@@ -5,7 +5,6 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
@@ -52,8 +51,9 @@ public final class HomingArrow extends JavaPlugin implements Listener{
             if (event.getProjectile().getType() == EntityType.ARROW) {
                 Arrow a = (Arrow) event.getProjectile();
                 final Entity eClosest = entityClosest;
-                new BukkitRunnable(){
 
+                new BukkitRunnable(){
+                    Vector v;
                     @Override
                     public void run() {
 
@@ -62,7 +62,7 @@ public final class HomingArrow extends JavaPlugin implements Listener{
                             return;
                         }
 
-                        Vector v = eClosest.getLocation().subtract(location).toVector();
+                        v = eClosest.getLocation().subtract(a.getLocation()).toVector();
 
                         v.normalize();
 
@@ -75,12 +75,4 @@ public final class HomingArrow extends JavaPlugin implements Listener{
             }
         }
     }
-
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event){
-
-        System.out.println("A player has joined the server.");
-        event.setJoinMessage("Welcome to the server you big dummy.");
-    }
 }
-
