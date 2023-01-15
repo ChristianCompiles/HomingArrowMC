@@ -1,0 +1,6 @@
+name: HomingArrow
+version: '${project.version}'
+main: me.christiancompiles.homingarrow.HomingArrow
+api-version: 1.19
+authors: [ ChristianCompiles ]
+description: Allow arrow shot to target certain entities.
